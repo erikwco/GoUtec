@@ -33,11 +33,8 @@
 		// private constructor
 		private function __construct(){
 			// create connection
-			// $this->connection = @mysql_connect('mysql1000.mochahost.com', 'erikwco_root', 'Elite_123');
-			// //select database
-			// mysql_select_db('erikwco_orchid_db', $this->connection);
 			//
-			$this->connection = @mysql_connect('localhost', 'root', 'Elite$00');
+			$this->connection = @mysql_connect('localhost', 'xxxx', 'xxxx');
 			// select database
 			mysql_select_db('orchid_db', $this->connection);
 			// return 
