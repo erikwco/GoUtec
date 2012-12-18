@@ -1,0 +1,71 @@
+<div class="container">
+	<div class="well well-small">
+		<h3>Shopping Cart</h3> 	
+		<h5><span class="badge badge-inverse">{{itemsOnCart}}</span> item(s) on cart</h5>
+      <a  href="" alt="Print"  class="btn btn-success no-print" onclick="window.print();return false;" ><i class="icon-print icon-white"></i> Print</a>
+	</div>
+</div>
+
+
+
+<div class="row">
+	<div class="span12">
+		 <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Code</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th class="cart-item-center">Remove</th>
+          </tr>
+        </thead>
+        <tbody ng-repeat="item in cart | filter:cartFilter">
+          <tr>
+            <td>{{item.Code}}</td>
+            <td>{{item.Name}}</td>
+            <td>{{item.Quantity}}</td>
+            <td>{{item.Price | currency}}</td>
+            <td>{{item.Price * item.Quantity | currency}}</td>
+            <td class="cart-item-center" ng-click="removeItem(item);"><i class="icon-remove-circle"></i></td>
+          </tr>
+        </tbody>
+				<tbody class="cart-item-total">
+        	<tr>
+        		<td></td>
+        		<td>Grand Total</td>
+        		<td>{{itemsOnCart}}</td>
+        		<td>{{getSubTotal() | currency}}</td>
+        		<td>{{getGrandTotal() | currency}}</td>
+        		<td></td>
+        	</tr>
+        </tbody>        
+      </table>
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="span12">
+		<span class="pull-right" ng-show="itemsOnCart" ng-cloak>
+			<a  href="#myCheckout" alt="Proceed To Checkout" role="button" class="btn btn-success no-print" data-toggle="modal"><i class="icon-ok icon-white"></i> Proceed to Checkout</a>
+		</span>
+	</div>
+</div>
+
+
+<div id="myCheckout" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Proceed to Checkout ?</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are you really sure to proceed ? </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <button class="btn btn-primary" ng-click="proceedToCheckout()"  data-dismiss="modal">Proceed</button>
+  </div>
+</div>
+

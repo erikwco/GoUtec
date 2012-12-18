@@ -1,0 +1,101 @@
+<div class="container">
+
+	<div class="span10">
+		<fieldset>
+			<legend>
+			Comments List
+			</legend>
+
+			<table class="table table-condensed table-hover">
+			  <thead>
+			    <tr>
+			      <th>Code</th>
+			      <th>Comment</th>
+			      <th>User</th>
+			      <th>Active</th>
+			      <th class="mto-item-center">Edit</th>
+			    </tr>
+			  </thead>
+			  <tbody ng-repeat="item in list | filter:cartFilter">
+			    <tr>
+			      <td>{{item.Code}}</td>
+			      <td>{{item.Comment}}</td>
+			      <td>{{item.CodeUser}}</td>
+			      <td>{{item.Active}}</td>
+			      <td class="cart-item-center" ng-click="setItem(item);"><i class="icon-pencil"></i></td>
+			    </tr>
+			  </tbody>
+			</table>
+		</fieldset>
+	
+	
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="pagination pull-right">
+				  <ul>
+				    <li ng-class="{disabled: currentPage==0}"><a href="" ng-click="prevPage()">Prev</a></li>
+			    	<li ng-repeat="page in totalPages" ng-class="{active: currentPage==$index}"><a href="" ng-click="changePage($index)">{{$index+1}}</a></li>
+				    <li ng-class="{disabled: currentPage==(totalPages.length -1) }"><a href="" ng-click="nextPage()">Next</a></li>
+				  </ul>
+				</div>
+			</div>
+		</div>
+
+
+		<form ng-model="current">
+		  <fieldset>
+		  	<legend>
+			    <a  href="" alt="Register" class="btn btn-mini btn-success" ng-click="newItem()"><i class="icon-plus-sign icon-white"></i> New </a> 
+			  	Detail 
+		  	</legend>
+		  	
+		    <label>User Name</label>
+		    <input type="text" placeholder="User Name" ng-model="current.CodeUser" value="current.CodeUser" ng-disabled="isKey('CodeUser')">
+		    
+		    <label>Comment</label>
+		    <input type="Comment" placeholder="Comment" ng-model="current.Comment" value="current.Comment" ng-disabled="isKey('Comment')">
+		    
+		    <label>Active</label>
+         <select ng-model="current.Active" ng-disabled="isKey('Active')">
+          <option value="A">Active</option>
+          <option value="I">Inactive</option>
+        </select>
+            		    
+		    <label></label>
+		    <a  href="#askCreateUser" alt="Register" role="button" class="btn btn-success" data-toggle="modal" ng-click="setDataOperation('Update')"><i class="icon-edit icon-white"></i> Update </a> 
+		    <a  href="#askCreateUser" alt="Register" role="button" class="btn btn-warning" data-toggle="modal" ng-click="setDataOperation('Delete')"><i class="icon-trash icon-white"></i> Delete </a> 
+		  </fieldset>
+		  
+		</form>
+
+		<div class="alert alert-block alert-{{registerStatus}} fade in" ng-show="showMessage">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <h4 class="alert-heading">{{registerHeader}}</h4>
+      <p>{{registerDetail}}</p>
+      <p><a  href="#" alt="Register" role="button" class="btn btn-success" data-toggle="modal"><i class="icon-ok icon-white"></i> Close </a> </p>
+    </div>
+		
+		
+	</div>
+	
+
+	
+</div>
+
+
+	
+<div id="askCreateUser" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">{{MessageOperation}}?</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are you really sure to proceed ? </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <button class="btn btn-primary" ng-click="Proceed()"  data-dismiss="modal">Proceed</button>
+  </div>
+</div>	
+
+

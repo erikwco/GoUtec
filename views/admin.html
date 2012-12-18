@@ -1,0 +1,28 @@
+
+<div class="container-fluid">
+  <div class="row-fluid">
+  
+    <div class="span2">
+      <ul class="nav nav-list">
+        <li class="nav-header">Maintenances</li>
+        <li><a href="" ng-click="changeMto('users')">Users</a></li>
+        <li><a href="" ng-click="changeMto('products')">Products</a></li>
+        <li><a href="" ng-click="changeMto('contacts')">Contacts</a></li>
+        <li><a href="" ng-click="changeMto('comments')">Comments</a></li>
+        
+        <li class="nav-header">Reports</li>
+        <li><a href="" ng-click="changeMto('invoices')">Invoices</a></li>
+        <li><a href="" ng-click="changeMto('sales')">Sales</a></li>
+        
+        <li class="divider"></li>
+        <li><a href="" ng-click="changeMto('about')">About Me</a></li>
+      </ul>
+    </div>
+    
+    <div class="span10">
+      <ng-include src="mroute" >
+      </ng-include>
+    </div>
+    
+  </div>
+</div>

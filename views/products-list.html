@@ -1,0 +1,73 @@
+
+<div class="container">
+	<div class="well well-small">
+		<h3>Our amazing products at your hands!</h3> 	
+	</div>
+</div>
+
+<div class="row">
+	<div class="span4">
+		Filter by Name: <input type="text" placeholder="Type text to filter" ng-model="productName"/>
+	</div>
+	<div class="span8">
+		<div class="pagination pull-right">
+		  <ul>
+		    <li ng-class="{disabled: currentPage==0}"><a href="" ng-click="prevPage()">Prev</a></li>
+	    	<li ng-repeat="page in totalPages" ng-class="{active: currentPage==$index}"><a href="" ng-click="changePage($index)">{{$index+1}}</a></li>
+		    <li ng-class="{disabled: currentPage==(totalPages.length -1) }"><a href="" ng-click="nextPage()">Next</a></li>
+		  </ul>
+		</div>
+	</div>
+</div>
+
+<div class="row">    
+
+	<span ng-repeat="item in list | filter:productName">
+
+	  <div class="span2">
+	    <div class="thumbnail">
+	     <a  href="#myProduct" alt="View details" role="button" data-toggle="modal" ng-click="setProduct(item)"><img alt="" ng-src="{{'img/products/' + item.ImagePath}}"></a>
+	     <div class="caption product-detail-center">
+	       <h5>{{item.Name}}</h5>
+	       <p><a href="" class="btn btn-primary" ng-click="addToCart(item)"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a></p>
+	     </div>
+	    </div>
+	    <hr/>
+	  </div>
+    
+	</span>  
+
+</div>
+
+
+<div class="row">
+	<div class="span12">
+		<div class="pagination">
+		  <ul>
+		    <li ng-class="{disabled: currentPage==0}"><a href="" ng-click="prevPage()">Prev</a></li>
+	    	<li ng-repeat="page in totalPages" ng-class="{active: currentPage==$index}"><a href="" ng-click="changePage($index)">{{$index+1}}</a></li>
+		    <li ng-class="{disabled: currentPage==(totalPages.length -1) }"><a href="" ng-click="nextPage()">Next</a></li>
+		  </ul>
+		</div>
+	</div>
+</div>
+
+
+
+<div id="myProduct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">{{Message}} for {{Product.Name}}</h3>
+  </div>
+  <div class="modal-body">
+    <p class="product-detail-center"><img alt="" ng-src="{{'img/products/' + Product.Image}}"></p>
+    <p>{{Product.Description}}</p>
+    <hr/>
+    <p class="pull-right">Price : {{Product.Price | currency}}</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <a href="" class="btn btn-primary" ng-click="addToCart(Product.Item)"><i class="icon-shopping-cart icon-white" data-dismiss="modal"></i> Add to Cart</a>
+  </div>
+</div>
+

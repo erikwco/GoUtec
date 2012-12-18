@@ -1,0 +1,112 @@
+<div class="container">
+
+	<div class="span10">
+		<fieldset>
+			<legend>
+			User List
+			</legend>
+
+			<table class="table table-condensed table-hover">
+			  <thead>
+			    <tr>
+			      <th>Name</th>
+			      <th>User Name</th>
+			      <th>Active</th>
+			      <th>Code Profile</th>
+			      <th class="mto-item-center">Edit</th>
+			    </tr>
+			  </thead>
+			  <tbody ng-repeat="item in list | filter:cartFilter">
+			    <tr>
+			      <td>{{item.Name}}</td>
+			      <td>{{item.User}}</td>
+			      <td>{{item.Active}}</td>
+			      <td>{{item.CodeProfile}}</td>
+			      <td class="cart-item-center" ng-click="setItem(item);"><i class="icon-pencil"></i></td>
+			    </tr>
+			  </tbody>
+			</table>
+		</fieldset>
+	
+	
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="pagination pull-right">
+				  <ul>
+				    <li ng-class="{disabled: currentPage==0}"><a href="" ng-click="prevPage()">Prev</a></li>
+			    	<li ng-repeat="page in totalPages" ng-class="{active: currentPage==$index}"><a href="" ng-click="changePage($index)">{{$index+1}}</a></li>
+				    <li ng-class="{disabled: currentPage==(totalPages.length -1) }"><a href="" ng-click="nextPage()">Next</a></li>
+				  </ul>
+				</div>
+			</div>
+		</div>
+
+
+		<form ng-model="current">
+		  <fieldset>
+		  	<legend>
+			    <a  href="" alt="Register" class="btn btn-mini btn-success" ng-click="newItem()"><i class="icon-plus-sign icon-white"></i> New </a> 
+			  	Detail 
+		  	</legend>
+		    <label>Name</label>
+		    <input type="text" placeholder="First Name + Last Name" ng-model="current.Name" value="current.Name"  ng-disabled="isKey('Name')">
+		    
+		    <label>User Name</label>
+		    <input type="text" placeholder="UserName" ng-model="current.User" value="current.User" ng-disabled="isKey('User')">
+		    
+		    <label>Password</label>
+		    <input type="password" placeholder="Password" ng-model="current.Pass" value="current.Pass" ng-disabled="isKey('Pass')">
+		    
+		    <label>Confirm Password</label>
+		    <input type="password" placeholder="Confirm Password" ng-model="current.Pass" value="current.Pass" ng-disabled="isKey('Pass')">
+		    
+		    <label>Active</label>
+         <select ng-model="current.Active" ng-disabled="isKey('Active')">
+          <option value="A">Activo</option>
+          <option value="I">Inactivo</option>
+        </select>
+		    
+		    <label>Profile</label>
+        <select ng-model="current.CodeProfile" ng-disabled="isKey('Profile')">
+          <option value="USER">Usuario de Consulta</option>
+          <option value="ADMIN">Administrador</option>
+        </select>
+            		    
+		    <label></label>
+		    <a  href="#askCreateUser" alt="Register" role="button" class="btn btn-success" data-toggle="modal" ng-click="setDataOperation('Update')"><i class="icon-edit icon-white"></i> Update </a> 
+		    <a  href="#askCreateUser" alt="Register" role="button" class="btn btn-warning" data-toggle="modal" ng-click="setDataOperation('Delete')"><i class="icon-trash icon-white"></i> Delete </a> 
+		  </fieldset>
+		  
+		</form>
+
+		<div class="alert alert-block alert-{{registerStatus}} fade in" ng-show="showMessage">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <h4 class="alert-heading">{{registerHeader}}</h4>
+      <p>{{registerDetail}}</p>
+      <p><a  href="#" alt="Register" role="button" class="btn btn-success" data-toggle="modal"><i class="icon-ok icon-white"></i> Close </a> </p>
+    </div>
+		
+		
+	</div>
+	
+
+	
+</div>
+
+
+	
+<div id="askCreateUser" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">{{MessageOperation}}?</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are you really sure to proceed ? </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <button class="btn btn-primary" ng-click="Proceed()"  data-dismiss="modal">Proceed</button>
+  </div>
+</div>	
+
+

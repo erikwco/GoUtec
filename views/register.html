@@ -1,0 +1,49 @@
+<div class="container">
+
+	<div class="span4 offset4">
+		<form ng-model="user">
+		  <fieldset>
+		    <legend>Register new user</legend>
+		    
+		    <label>Name</label>
+		    <input type="text" placeholder="First Name + Last Name" ng-model="user.Name">
+		    
+		    <label>User Name</label>
+		    <input type="text" placeholder="UserName" ng-model="user.User">
+		    
+		    <label>Password</label>
+		    <input type="password" placeholder="Password" ng-model="user.Pass">
+		    
+		    <label>Confirm Password</label>
+		    <input type="password" placeholder="Confirm Password" ng-model="user.Confirm">
+		    
+		    <label></label>
+		    <a  href="#askCreateUser" alt="Register" role="button" class="btn btn-success" data-toggle="modal"><i class="icon-ok icon-white"></i> Register </a> 
+		  </fieldset>
+		</form>
+	</div>
+	
+	<div class="span8 offset2">
+		<div class="alert alert-block alert-{{registerStatus}} fade in" ng-show="showMessage">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <h4 class="alert-heading">{{registerHeader}}</h4>
+      <p>{{registerDetail}}</p>
+      <p><a  href="#" alt="Register" role="button" class="btn btn-success" data-toggle="modal"><i class="icon-ok icon-white"></i> Register </a> </p>
+    </div>
+	</div>
+	
+</div>
+	
+<div id="askCreateUser" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Register new User?</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are you really sure to proceed ? </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <button class="btn btn-primary" ng-click="proceedToCreateUser()"  data-dismiss="modal">Proceed</button>
+  </div>
+</div>	

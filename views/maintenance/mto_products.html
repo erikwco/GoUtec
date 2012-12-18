@@ -1,0 +1,119 @@
+<div class="container">
+
+	<div class="span10">
+		<fieldset>
+			<legend>
+			Product List
+			</legend>
+
+			<table class="table table-condensed table-hover">
+			  <thead>
+			    <tr>
+			      <th>Code</th>
+			      <th>Description</th>
+			      <th>Price</th>
+			      <th>Status</th>
+			      <th class="mto-item-center">Edit</th>
+			    </tr>
+			  </thead>
+			  <tbody ng-repeat="item in list | filter:cartFilter">
+			    <tr>
+			      <td>{{item.Code}}</td>
+			      <td>{{item.Name}}</td>
+			      <td>{{item.Price | currency}}</td>
+			      <td>{{item.Status}}</td>
+			      <td class="cart-item-center" ng-click="setItem(item);"><i class="icon-pencil"></i></td>
+			    </tr>
+			  </tbody>
+			</table>
+		</fieldset>
+	
+	
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="pagination pull-right">
+				  <ul>
+				    <li ng-class="{disabled: currentPage==0}"><a href="" ng-click="prevPage()">Prev</a></li>
+			    	<li ng-repeat="page in totalPages" ng-class="{active: currentPage==$index}"><a href="" ng-click="changePage($index)">{{$index+1}}</a></li>
+				    <li ng-class="{disabled: currentPage==(totalPages.length -1) }"><a href="" ng-click="nextPage()">Next</a></li>
+				  </ul>
+				</div>
+			</div>
+		</div>
+
+
+		<form ng-model="current">
+		  <fieldset>
+		  	<legend>
+			    <a  href="" alt="Register" class="btn btn-mini btn-success" ng-click="newItem()"><i class="icon-plus-sign icon-white"></i> New </a> 
+			  	Detail 
+		  	</legend>
+		    <label>Code</label>
+		    <input type="text" placeholder="Product Code" ng-model="current.Code" value="current.Code"  ng-disabled="isKey('Code')">
+		    
+		    <label>Product Name</label>
+		    <input type="text" placeholder="Product Name" ng-model="current.Name" value="current.Name" ng-disabled="isKey('Name')">
+		    
+		    <label>Price</label>
+		    <input type="text" placeholder="Price" ng-model="current.Price" value="current.Price" ng-disabled="isKey('Price')">
+		    
+		    <label>Offer Price</label>
+		    <input type="text" placeholder="Offer Price" ng-model="current.OfferPrice" value="current.OfferPrice" ng-disabled="isKey('OfferPrice')">
+		    
+		    <label>Description</label>
+		    <input type="text" placeholder="Description" ng-model="current.Description" value="current.Description" ng-disabled="isKey('Description')">
+		    
+		    <label>ImagePath</label>
+		    <input type="text" placeholder="Image Name" ng-model="current.ImagePath" value="current.ImagePath" ng-disabled="isKey('ImagePath')">
+		    
+		    <label>Active</label>
+         <select ng-model="current.Status" ng-disabled="isKey('Status')">
+          <option value="A">Activo</option>
+          <option value="I">Inactivo</option>
+        </select>
+		    
+		    <label>Brand</label>
+        <select ng-model="current.CodeBrand" ng-disabled="isKey('CodeBrand')">
+          <option value="1">Marca 1</option>
+          <option value="2">Marca 2</option>
+          <option value="3">Marca 3</option>
+        </select>
+            		    
+		    <label></label>
+		    <a  href="#askCreateUser" alt="Register" role="button" class="btn btn-success" data-toggle="modal" ng-click="setDataOperation('Update')"><i class="icon-edit icon-white"></i> Update </a> 
+		    <a  href="#askCreateUser" alt="Register" role="button" class="btn btn-warning" data-toggle="modal" ng-click="setDataOperation('Delete')"><i class="icon-trash icon-white"></i> Delete </a> 
+		  </fieldset>
+		  
+		</form>
+
+		<div class="alert alert-block alert-{{registerStatus}} fade in" ng-show="showMessage">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <h4 class="alert-heading">{{registerHeader}}</h4>
+      <p>{{registerDetail}}</p>
+      <p><a  href="#" alt="Register" role="button" class="btn btn-success" data-toggle="modal"><i class="icon-ok icon-white"></i> Close </a> </p>
+    </div>
+		
+		
+	</div>
+	
+
+	
+</div>
+
+
+	
+<div id="askCreateUser" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">{{MessageOperation}}?</h3>
+  </div>
+  <div class="modal-body">
+    <p>Are you really sure to proceed ? </p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    <button class="btn btn-primary" ng-click="Proceed()"  data-dismiss="modal">Proceed</button>
+  </div>
+</div>	
+
+

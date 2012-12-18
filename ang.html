@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+	
+<script src="components/vendor/angular.js"></script>
+<style>
+.ng-invalid { border: 1px solid red; }
+.odd { background-color: red; }
+.even { background-color: green; }
+</style>
+</head>
+<body>
+	
+	
+	<div ng-app="">
+  <div ng-init="predicate='name'; reverse=false;">Sort: predicat:{{predicate}} reverse:{{reverse}} </div>
+  <div ng-click="reverse=!reverse">[change reverse]</div>
+  <div ng-click="predicate='name'; reverse=!reverse;">[set predicate: name + change reverse]</div>
+  <div ng-click="predicate='id'; reverse=!reverse;">[set predicate: id + change reverse]</div>
+  <div ng-init="lines=[{'name':'eee', 'id':7}, {'name':'aaa', 'id':9}, {'name':'ccc', 'id':8}, {'name':'bbb', 'id':2}, {'name':'ddd', 'id':3}]">
+      <ul>
+          <li ng-repeat="line in lines | orderBy:predicate:reverse" ng-class-odd="'odd'" ng-class-even="'even'">{{ line.name }}</li>
+      </ul>
+  </div>
+</div>​
+	
+	
+</body>
+</html>

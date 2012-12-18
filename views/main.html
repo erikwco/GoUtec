@@ -1,0 +1,126 @@
+<!-- head content -->
+   
+<div class="container">
+  <!-- Main hero unit for a primary marketing message or call to action -->
+<div class="hero-unit clearfix">
+ <div class="pull-left span5">
+  <h1>Welcome to Orchid Perfumes</h1>
+  <p>The place on the web where Orchids borns as perfumes</p>
+  <p><a class="btn btn-primary btn-large" href="#/productlist">Explore our perfumes</a></p>
+ </div>
+ 
+ 
+ <div class="pull-right span4" ng-hide="Signed">
+  <form class="well" ng-model="boxUser">
+   <label>Username</label>
+   <input type="text" class="span3" placeholder="Type your username" ng-model="boxUser.user">
+   <label>Password</label>
+   <input type="password" class="span3" placeholder="Type your password" ng-model="boxUser.pass">
+   <button type="submit" class="btn" ng-click="SignIn()">Sign in</button> 
+   or
+   <a href="#/register" alt="Register new User" >Sign Up</a>
+  </form>
+  
+    <div class="alert alert-block alert-danger fade in" ng-show="showLoginMessage">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <h4 class="alert-heading">Error !</h4>
+      <p>{{errorLoginDetail}}</p>
+    </div>
+ </div>
+
+ <div class="pull-right span4" ng-show="Signed">
+ 	  <b>Welcome</b> {{userName}}, to modify your profile please click on <a href="#/profile"><i class="icon-user"></i> Profile</a> in the menu bar
+    <span ng-show="profileName"> or click on <a href="#/admin"><i class="icon-lock"></i> Admin Options</a> to configure new products</span> or <a href="#/logout"><i class="icon-off"></i> LogOut</a> to close your session.
+    <p>If you have any question please feel free to <a href="#contact">Contact Us</a>.</p>
+ </div>
+ 
+ 
+ 
+ 
+</div>
+
+
+<!-- previews  -->
+
+<div class="row">
+	<div class="span12">
+    <div class="alert alert-info">
+	    <strong>Hey check it out!</strong> our last products added.
+    </div>
+	</div>
+</div>
+
+<div class="row">    
+
+	<span ng-repeat="item in list">
+
+	  <div class="span2">
+	    <div class="thumbnail">
+	     <a  href="#myProduct" alt="View details" role="button" data-toggle="modal" ng-click="setProduct(item)"><img alt="" ng-src="{{'img/products/' + item.ImagePath}}"></a>
+	     <div class="caption product-detail-center">
+	       <h5>{{item.Name}}</h5>
+	       <p><a href="" class="btn btn-primary" ng-click="addToCart(item)"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a></p>
+	     </div>
+	    </div>
+	  </div>
+
+  
+	</span>  
+
+</div>
+
+
+<hr/>
+<!-- promos -->
+
+<div class="row">
+	<div class="span12">
+    <div class="alert alert-info">
+	    <strong>Wait!</strong> don't go  without check our last proms!
+    </div>
+	</div>
+</div>
+
+
+<div class="row">    
+
+	<span ng-repeat="itemp in promos">
+
+	  <div class="span2">
+	    <div class="thumbnail">
+	     <a  href="#myProduct" alt="View details" role="button" data-toggle="modal" ng-click="setProduct(itemp)"><img alt="" ng-src="{{'img/products/' + itemp.ImagePath}}"></a>
+	     <div class="caption product-detail-center">
+	       <h5>{{itemp.Name}}</h5>
+	       <p><a href="" class="btn btn-primary" ng-click="addToCart(itemp)"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a></p>
+	     </div>
+	    </div>
+	  </div>
+	  
+  
+	</span>  
+</div>
+
+<hr/>
+
+
+
+
+<div id="myProduct" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">{{Message}} for {{Product.Name}}</h3>
+  </div>
+  <div class="modal-body">
+    <p class="product-detail-center"><img alt="" ng-src="{{'img/products/' + Product.Image}}"></p>
+    <p>{{Product.Description}}</p>
+    <hr/>
+    <p class="pull-right">Price : {{Product.Price | currency}}</p>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <a href="" class="btn btn-primary" ng-click="addToCart(Product.Item)"><i class="icon-shopping-cart icon-white" data-dismiss="modal"></i> Add to Cart</a>
+  </div>
+</div>
+
+
+
